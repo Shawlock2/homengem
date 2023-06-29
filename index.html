@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+    <style>
+        *{
+            background-color: rgb(153, 80, 236);
+        }
+        header{
+            width: 100%;
+            height: 90px;
+            text-align: center;
+            border-radius: 5px;
+            
+        }
+        #title{
+            padding-top: 25px;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+        #sec{
+                padding-top:0px;
+                width: 100%;
+                height: 600px;
+            
+        }
+        B1{
+            background-color: rgba(240, 248, 255, 0);
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            padding: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">
+            Clique no botão
+        </h1>
+    </header>
+    
+    <section id="sec">
+        <button id="B1" onclick="posicionarBotaoAleatoriamente()">🎁</button>
+    </section>
+    <script>
+        var cont = 0
+        // Função para gerar coordenadas aleatórias
+        function gerarCoordenadasAleatorias() {
+        var larguraTela = window.innerWidth;
+        var alturaTela = (window.innerHeight);
+
+        var coordenadaX = Math.floor(Math.random() * (larguraTela - 60)); // Substitua 100 pela largura do botão
+        var coordenadaY = Math.floor(Math.random() * (alturaTela - 80)); // Substitua 50 pela altura do botão
+
+        return { x: coordenadaX, y: coordenadaY };
+        }
+
+        // Função para posicionar o botão aleatoriamente
+        function posicionarBotaoAleatoriamente() {
+        var botao = document.getElementById("B1");
+        var title = document.getElementById("title")
+        var coordenadas = gerarCoordenadasAleatorias();
+        cont++
+        
+        botao.style.position = "absolute";
+        botao.style.left = coordenadas.x + "px";
+        botao.style.top = coordenadas.y + "px";
+
+        if(cont==5){
+            title.innerHTML = "Ta quase lá"
+
+        }
+        if(cont == 10){
+            title.innerHTML = 'Você consegue'
+        }
+        if(cont == 12){
+            title.innerHTML = 'Vamo Clara!'
+        }
+        if(cont == 14){
+            title.innerHTML = 'Clica mais uma vez'
+            botao.addEventListener('click',function(){
+                title.innerHTML = "Feliz aniversário 🥳"
+                setTimeout(1000);
+                window.location.href ='https://youtu.be/tl9WC-OPP18'
+            })
+        }
+        }
+
+        // Chame a função para posicionar o botão aleatoriamente quando a página for carregada
+        window.onload = posicionarBotaoAleatoriamente;
+
+
+    </script>
+</body>
+</html>
